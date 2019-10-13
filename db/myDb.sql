@@ -54,6 +54,7 @@ CREATE TABLE locations (
 CREATE SEQUENCE meta_id_seq;
 CREATE TABLE metas (
    id INTEGER PRIMARY KEY DEFAULT nextval('meta_id_seq'),
+   parent_id INTEGER REFERENCES metas(id),
    name VARCHAR(255),
    desciption VARCHAR(2047)
 );
