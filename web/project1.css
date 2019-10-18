@@ -57,40 +57,31 @@ h2 {
   font-size: 1.125em;
   font-style: italic;
 }
-.main-nav {
-  background: #D28816;
-  color: white;
-}
-.main-nav a {
-  color: #1a577f;
-  text-decoration: none;
-}
-.main-nav ul, .main-nav li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.main-nav ul {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-}
-.main-nav ul a {
-  padding: 0.9375em 2.1875em;
-  display: flex;
-  text-transform: uppercase;
-}
-.main-nav ul a:hover, .main-nav ul a:focus {
-  background: #fbf795;
-  color: #419cd8;
-}
-.main-nav ul .mobile-button a {
-  position: absolute;
-  left: -99999em;
-}
-@media (max-width: 700px) {
+#navbar ul { 
+	margin: 0; 
+	padding: 5px; 
+	list-style-type: none; 
+	text-align: center; 
+	background-color: #000; 
+	} 
+ 
+#navbar ul li {  
+	display: inline; 
+	} 
+ 
+#navbar ul li a { 
+	text-decoration: none; 
+	padding: .2em 1em; 
+	color: #fff; 
+	background-color: #000; 
+	} 
+ 
+#navbar ul li a:hover { 
+	color: #000; 
+	background-color: #fff; 
+	} 
+ 
+ @media (max-width: 700px) {
   .main-nav ul {
     flex-wrap: wrap;
     justify-content: flex-start;

@@ -22,6 +22,7 @@ $date = date('m/d/Y h:i:s a', time());
    <script src="project1.js" async defer></script>
 </head>
 <body>
+   <?php include("gop_menu.php"); ?>
 <div>
 <?=$date?> &nbsp; Welcome to the future home of <?php echo 'CS313-GOp Garage Organizer!'; ?>
 <div>
