@@ -25,16 +25,18 @@ $date = date('m/d/Y h:i:s a', time());
 <div>
 <?=$date?> &nbsp; Welcome to the future home of <?php echo 'CS313-GOp Garage Organizer!'; ?>
 <div>
-Requirements for this assignment:
-1 - Your application must be running on Heroku with your source code in GitHub.
+   Requirements for this assignment:
+   <ol>
+      <li>Your application must be running on Heroku with your source code in GitHub.</li>
 
-2 - Your application must have well organized and cleanly written PHP, HTML, CSS, and JavaScript.
+      <li>Your application must have well organized and cleanly written PHP, HTML, CSS, and JavaScript.</li>
 
-3 - Your database must have at least one foreign key relationship.
+      <li>Your database must have at least one foreign key relationship.</li>
 
-4 - Your PHP code must have at least one SQL join query.
+      <li>Your PHP code must have at least one SQL join query.</li>
 
-5 - Your PHP code must have at least one SQL update statement.
+      <li>Your PHP code must have at least one SQL update statement.</li>
+   </ol>
 </div>
 </div>
 </body>
