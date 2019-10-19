@@ -54,9 +54,10 @@ h2 {
   color: white;
 }
 .site-tagline {
-  font-size: 1.125em;
+  font-size: 0.75em;
   font-style: italic;
 }
+
 #navbar ul { 
 	margin: 0; 
 	padding: 5px; 
@@ -64,22 +65,57 @@ h2 {
 	text-align: center; 
 	background-color: #000; 
 	} 
- 
 #navbar ul li {  
 	display: inline; 
 	} 
- 
 #navbar ul li a { 
 	text-decoration: none; 
 	padding: .2em 1em; 
 	color: #fff; 
 	background-color: #000; 
 	} 
- 
 #navbar ul li a:hover { 
 	color: #000; 
 	background-color: #fff; 
-	} 
+  } 
+
+  body .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  body .container .dataset_table > table {
+    overflow: hidden;
+  }
+  .dataset_table > table tr:nth-child(even) {
+    background-color: #eee;
+  }
+  .dataset_table > table tr:nth-child(odd) {
+    background-color: #fff;
+  }
+  .dataset_table > table th {
+    color: white;
+    background-color: black;
+  }
+  tr:hover {
+    background-color: #ffa;
+  }
+  .dataset_table td , .dataset_table th {
+    position: relative;
+  }
+   td:hover::after, th:hover::after {
+    content: "";
+    position: absolute;
+    background-color: #ffa;
+    left: 0;
+    top: -5000px;
+    height: 10000px;
+    width: 100%;
+    z-index: -1;
+  }
  
  @media (max-width: 700px) {
   .main-nav ul {
@@ -203,6 +239,15 @@ h2 {
   z-index: -1;
   font-size: 1.75em;
 }
+div .notes {
+  position: fixed;
+  width: 80%;
+  bottom: 10px;
+  background: gray;
+  color: darkblue;
+  font-size: .5em;
+}
+
 .footer {
   background: #F15D22;
   color: white;
@@ -216,41 +261,3 @@ h2 {
   border-bottom: 1px solid;
 }
 
-.tooltip {
-   color: #011d23;
-   position: relative;
-   display: inline-block;
- }
- 
-.tooltip .tooltiptext {
-   visibility: hidden;
-   width: 120px;
-   background-color: #555;
-   color: #fff;
-   text-align: center;
-   border-radius: 6px;
-   padding: 5px 0;
-   position: absolute;
-   z-index: 1;
-   bottom: 125%;
-   left: 50%;
-   margin-left: -60px;
-   /*opacity: 0;*/
-   transition: opacity 0.3s;
- }
- 
-.tooltip .tooltiptext::after {
-   content: "";
-   position: absolute;
-   top: 100%;
-   left: 50%;
-   margin-left: -5px;
-   border-width: 5px;
-   border-style: solid;
-   border-color: #555 transparent transparent transparent;
- }
- 
-.tooltip:hover .tooltiptext {
-   visibility: visible;
-   opacity: 1;
- }

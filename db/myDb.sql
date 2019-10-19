@@ -79,3 +79,6 @@ ALTER TABLE users
 ALTER TABLE items
    ADD CONSTRAINT fk_items_location_id --[FK ref to locations.id]
    FOREIGN KEY (location_id) REFERENCES locations(id);
+
+ALTER TABLE items
+	ADD COLUMN description VARCHAR(2047);
