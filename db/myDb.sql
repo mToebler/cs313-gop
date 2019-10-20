@@ -83,3 +83,5 @@ ALTER TABLE items
 
 ALTER TABLE items
 	ADD COLUMN description VARCHAR(2047);
+
+alter table meta_item alter column value drop not null;

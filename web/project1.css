@@ -143,6 +143,37 @@ h2 {
     width: 100%;
   }
 }
+.item_detail {
+  background-color: darkgrey;
+  /* border-bottom:5px solid #D28816; */
+  padding: 1.5625em;
+  max-width: 47%;
+  /* background: #4F2400; */
+  color: #1a577f;
+  border-bottom: 5px solid #D28816;
+  margin-bottom: 2.1875em;
+  position: relative;
+  overflow: hidden;
+
+}
+.item_detail h1, .item_detail h2, .item_detail h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #024654;
+}
+.item_detail h1 {
+  font-size: 2.5em;
+}
+.item_detail h2 {
+  font-size: 1.5em;
+}
+.item_detail h3 {
+  font-size: 1.25em;
+}
+.item_detail h3::after {
+  border-bottom: 2px solid #D28816;
+}
+
+
 .full-bleed {
   background-size: cover;
   min-height: 300px;

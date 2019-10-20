@@ -106,3 +106,29 @@ INSERT INTO metas (parent_id, name, description) VALUES ((select id from metas w
 INSERT INTO metas (parent_id, name, description) VALUES ((select id from metas where name = 'tools'),'power tools', 'electric driven tools');
 INSERT INTO metas (parent_id, name, description) VALUES ((select id from metas where name = 'tools'),'large tools', 'two handed tools, not stored in toolbox');
 INSERT INTO metas (parent_id, name, description) VALUES ((select id from metas where name = 'paints & art supplies'),'spray paint', 'not for tagging');
+
+-- meta_items
+insert into meta_item (item_id, meta_id) values ((select id from items where name = 'hammer'), (select id from metas where name = 'hand tools'));
+insert into meta_item (item_id, meta_id) values ((select id from items where name = 'standard screw driver'), (select id from metas where name = 'hand tools'));
+insert into meta_item (item_id, meta_id) values ((select id from items where name = '1/4 inch irrigation tubing'), (select id from metas where name = 'irrigation'));
+insert into meta_item (item_id, meta_id) values ((select id from items where name = 'hand shovel'), (select id from metas where name = 'hand tools'));
+insert into meta_item (item_id, meta_id) values ((select id from items where name = 'flat shovel'), (select id from metas where name = 'large tools'));
+insert into meta_item (item_id, meta_id) values ((select id from items where name = 'Ryobi battery lawn mover'), (select id from metas where name = 'power machines'));
+insert into meta_item (item_id, meta_id) values ((select id from items where name = 'white spray paint'), (select id from metas where name = 'spray paint'));
+insert into meta_item (item_id, meta_id) values ((select id from items where name = 'sand paper:heavy duty'), (select id from metas where name = 'paints & art supplies'));
+
+-- scratch
+-- select i.name, i.description, m.name, l.description
+--    from items i join meta_item mi  
+--       on i.id = mi.item_id 
+--       join metas m
+--       on mi.meta_id = m.id
+--       join locations l 
+--       on i.location_id = l.id
+-- ;
+
+-- meta tag scratch:
+-- select m.id, m.name as name, m.description as descr, m2.name as parent, m2.id as pid from metas m left join metas m2 on m.parent_id = m2.id;
+
+-- users scratch
+select u.id, first_name, last_name, city, s.name as sa, address, email from users u join states s on u.state_id = s.id order by first_name; 
