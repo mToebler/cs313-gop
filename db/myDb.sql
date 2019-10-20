@@ -56,7 +56,7 @@ CREATE TABLE metas (
    id INTEGER PRIMARY KEY DEFAULT nextval('meta_id_seq'),
    parent_id INTEGER REFERENCES metas(id),
    name VARCHAR(255),
-   desciption VARCHAR(2047)
+   description VARCHAR(2047)
 );
 
 CREATE TABLE meta_item (
@@ -66,8 +66,9 @@ CREATE TABLE meta_item (
    PRIMARY KEY (item_id, meta_id)
 );
 
+CREATE SEQUENCE state_id_seq;
 CREATE TABLE states (
-   id INTEGER PRIMARY KEY, -- these will be populated
+   id INTEGER PRIMARY KEY DEFAULT nextval('state_id_seq'),
    name VARCHAR(255) NOT NULL
 );
 
