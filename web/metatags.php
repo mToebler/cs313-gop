@@ -36,7 +36,7 @@ $date = date('m/d/Y h:i:s a', time());
    $qstring = "select m.id, m.name as name, m.description as descr, m2.name as parent, m2.id as pid from metas m left join metas m2 on m.parent_id = m2.id order by name";
    foreach ($db->query($qstring)as $row) {
       echo '<tr>';
-      echo '<td>'. $row['name']  .'</td>';
+      echo '<td><a href="meta_detail.php?id=' .$row['id'] .'">' . $row['name'] .'</a></td>';
       echo '<td>' .$row['descr'] . '</td>';
       echo '<td>' . $row['parent'] . '</td>';
       echo '</tr>';

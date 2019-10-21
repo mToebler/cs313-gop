@@ -80,10 +80,10 @@ insert into states (name) VALUES ('WY');
 -- items
 INSERT INTO items (name, value, location_id, description) VALUES ('hammer', 3.50, 5, 'Handy Hammer');
 INSERT INTO items (name, value, location_id, description) VALUES ('standard screw driver', 2.75, 5, 'Large, chipped red handle. Good condition.');
-INSERT INTO items (name, value, location_id, description) VALUES ('1/4 inch irrigation tubing', 15.00, 27, '50 feet, black, flexible');
+INSERT INTO items (name, value, location_id, description) VALUES ('1/4 inch irrigation tubing', 15.00, 19, '50 feet, black, flexible');
 INSERT INTO items (name, value, location_id, description) VALUES ('hand shovel', 2.75, 8, 'white, older, slightly bent');
 INSERT INTO items (name, value, location_id, description) VALUES ('flat shovel', 16.50, 22, 'Taped up handle');
-INSERT INTO items (name, value, location_id, description) VALUES ('Ryobi battery lawn mover', 120.00, 26, 'Blade slightly bent-Beckett');
+INSERT INTO items (name, value, location_id, description) VALUES ('Ryobi battery lawn mover', 120.00, 20, 'Blade slightly bent-Beckett');
 INSERT INTO items (name, value, location_id, description) VALUES ('white spray paint', 8.50, 4, 'from Trent''s old collection. Unopened');
 INSERT INTO items (name, value, location_id, description) VALUES ('sand paper:heavy duty', 4.25, 3, 'unopened. 3M, 15 sheets');
 

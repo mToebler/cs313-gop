@@ -46,7 +46,7 @@ if (!is_null($id)) {
 
 }
       else {
-         echo 'Woops - unknown item. Please return to the <a href="index.php">main page</a>.';
+         echo 'Woops - unknown user. Please return to the <a href="index.php">main page</a>.';
       }
 ?>    
       </div>  

@@ -23,63 +23,13 @@ $date = date('m/d/Y h:i:s a', time());
 <body>
    <?php include("gop_menu.php"); ?>
 <div class="container">
-   <div class="dataset_table">
-      <table>
-         <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Location</th>
-            <th>Borrowed</th>
-         </tr>
-<?php 
+   <?php
+      include("db_connect.php");
+      // the big items query, mutliple joins and aliases.
+      $qstring = 'select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id;';
          
-include("db_connect.php");
-// the big items query, mutliple joins and aliases.
-$qstring = 'select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id;';
-
-foreach ($db->query($qstring)as $row) {
-   echo '<tr>';
-   echo '<td><a href="item_detail.php?id='. $row['id'] .'">';
-   echo $row['item'] . '<a></td>';
-   echo '<td>' .$row['idesc'] . '</td>';
-   echo '<td>' .$row['cat'] . '</td>';
-   echo '<td>' .$row['location'] . '</td>';
-   echo '<td>' . 'No' . '</td>';
-   echo '</tr>';
-}
-
-?>
-        <!-- <tr>
-            <td><a href="item_detail.php?id=1">Hammer<a></td>
-            <td>heavy, bang-y</td>
-            <td>cat here</td>
-            <td><a href="location_map.php?id=1">A2</a></td>
-            <td>No</td>
-         </tr>
-         <tr>
-            <td>Screwdriver</td>
-            <td>Brother Tonk's gave it to me.</td>
-            <td>cat here</td>
-            <td>A3</td>
-            <td><a href="lending.php?id=1">Yes</a></td>
-         </tr>
-         <tr>
-            <td>Chair covers</td>
-            <td>Scotchgard treated</td>
-            <td>cat here</td>
-            <td>K5</td>
-            <td>No</td>
-         </tr>
-         <tr>
-            <td>Lawn Mover</td>
-            <td>Electric goat</td>
-            <td>cat here</td>
-            <td>G1</td>
-            <td>No</td>
-         </tr> -->
-      </table>
-   </div>
+      include("item_list.php");
+   ?>
 </div>
 <div>
 <div class="notes">

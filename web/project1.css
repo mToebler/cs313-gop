@@ -88,7 +88,7 @@ h2 {
   }
 
   body .container .dataset_table > table {
-    overflow: hidden;
+    overflow-x:auto
   }
   .dataset_table > table tr:nth-child(even) {
     background-color: #eee;
@@ -100,13 +100,14 @@ h2 {
     color: white;
     background-color: black;
   }
-  tr:hover {
+  /* tr:hover {
     background-color: #ffa;
-  }
+  } */
   .dataset_table td , .dataset_table th {
     position: relative;
+    padding: 5px;
   }
-   td:hover::after, th:hover::after {
+   /* td:hover::after, th:hover::after {
     content: "";
     position: absolute;
     background-color: #ffa;
@@ -116,7 +117,7 @@ h2 {
     width: 100%;
     z-index: -1;
   }
- 
+  */
  @media (max-width: 700px) {
   .main-nav ul {
     flex-wrap: wrap;
@@ -147,7 +148,7 @@ h2 {
   background-color: darkgrey;
   /* border-bottom:5px solid #D28816; */
   padding: 1.5625em;
-  max-width: 47%;
+  max-width: 80%;
   /* background: #4F2400; */
   color: #1a577f;
   border-bottom: 5px solid #D28816;
@@ -172,7 +173,9 @@ h2 {
 .item_detail h3::after {
   border-bottom: 2px solid #D28816;
 }
-
+.item_detail .no_parent {
+    color: #ffa;
+}
 
 .full-bleed {
   background-size: cover;

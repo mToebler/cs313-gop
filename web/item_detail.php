@@ -26,7 +26,7 @@ $date = date('m/d/Y h:i:s a', time());
 <?php include("db_connect.php");
 $id = filter_var($_GET["id"], FILTER_SANITIZE_STRING);
 if (!is_null($id)) {
-   $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id where i.id = $id";
+   $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, m.id as mid, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id where i.id = $id";
    foreach ($db->query($qstring)as $row) {
 
 ?>
@@ -42,7 +42,7 @@ if (!is_null($id)) {
       echo '<br><h3>Location:</h3>';
       echo $row['location'];
       echo '<br><h3>Category:</h3>';
-      echo $row['cat'];
+      echo '<a href="meta_detail.php?id=' . $row['mid'] . '">' . $row['cat'] . '</a>';
       echo '<br><br><br><h2>Editing & Images coming soon!</h2>';
    }
 
