@@ -132,3 +132,15 @@ insert into meta_item (item_id, meta_id) values ((select id from items where nam
 
 -- users scratch
 select u.id, first_name, last_name, city, s.name as sa, address, email from users u join states s on u.state_id = s.id order by first_name; 
+
+-- meta_items scratch
+Select * from items i join meta_item mi on i.id = mi.item_id order by name;
+
+WITH RECURSIVE nodes(id,name,parent_id) AS (
+    SELECT s1.id, s1.name, s1.parent_id
+    FROM metas s1 WHERE parent_id = 1
+        UNION
+    SELECT s2.id, s2.name, s2.parent_id
+    FROM metas s2, nodes s1 WHERE s2.parent_id = s1.id
+)
+SELECT * FROM nodes;

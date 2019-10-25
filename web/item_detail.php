@@ -36,7 +36,7 @@ if (!is_null($id)) {
 <?php
       echo '<h1>';
       echo $row['item'];
-      echo '</h1>';
+      echo '</h1><div class="edit_link"><a href="item_edit.php?id='. $row['id'] . '">edit</a></div>';
       echo '<br><h3>Description:</h3>';
       echo $row['idesc'];
       echo '<br><h3>Location:</h3>';

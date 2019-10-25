@@ -1,3 +1,11 @@
 .DS_Store
 vendor/
 .env
+gop_locations.png
+gop_locations_sm.png
+gop_locations_sm72.png
+gop_locations_smc.png
+web/images/gop_locations.png
+web/images/gop_locations_sm72.png
+web/images/gop_locations_smc.png
+web/project.code-workspace

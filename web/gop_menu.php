@@ -12,13 +12,13 @@
       <div class="site-title">
          GOp
       </div>
-      <div id="navbar"> 
+      <div class="navbar"> 
          <ul> 
-            <li><a href="index.php">GOp Home</a></li> 
-            <li><a href="metatags.php">Categories</a></li> 
-            <li><a href="item_location.php">Location Map</a></li> 
-            <li><a href="users.php">Users</a></li> 
-            <li><a href="lending.php">Borrowed</a></li> 
+            <li><a href="/web/index.php">Items</a></li> 
+            <li><a href="/web/metatags.php">Categories</a></li> 
+            <li><a href="/web/item_location.php">Location Map</a></li> 
+            <li><a href="/web/users.php">Users</a></li> 
+            <li><a href="/web/lending.php">Borrowed</a></li> 
          </ul> 
       </div>
       <div class="site-tagline">
