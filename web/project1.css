@@ -204,13 +204,14 @@ h2 {
   position: relative;
 }
 .overlay {
+  font-family: 'Nunito', sans-serif;
   position: absolute; 
-  bottom: 70%; /*these values*/
-  left: 40%;  /* controlled by js*/
+  bottom: 71%; /*these values*/
+  left: 42%;  /* controlled by js*/
   background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  background: rgba(0, 0, 0, 0.4); /* Black see-through */
   color: #f1f1f1; 
-  width: 15%;
+  width: 10%;
   height: 10%;
   opacity:1;
   color: white;
