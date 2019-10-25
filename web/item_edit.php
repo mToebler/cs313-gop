@@ -112,7 +112,7 @@ if (!is_null($id)) {
          </div>
          <div class="img_overlay">
             <img src="images/gop_locations_sm.png" class=".img-fluid" alt="Indexed Garage Locations"/>
-            <div class="overlay">
+            <div class="overlay" id="overlay">
                X
             </div>
          </div>
