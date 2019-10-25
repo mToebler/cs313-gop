@@ -109,8 +109,11 @@ if (!is_null($id)) {
             ?>
             </select>
          </div>
-         <div>
+         <div class="img_overlay">
             <img src="images/gop_locations_sm.png" class=".img-fluid" alt="Indexed Garage Locations"/>
+            <div class="overlay">
+               <?=$row['item']?>
+            </div>
          </div>
       </div>
       <!-- <div class> -->
