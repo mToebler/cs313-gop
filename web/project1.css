@@ -168,12 +168,13 @@ h2 {
 }
 
 .item_detail {
-  background-color: darkgrey;
+  background-color: #6c757d;
   /* border-bottom:5px solid #D28816; */
   padding: 1.5625em;
   max-width: 80%;
   /* background: #4F2400; */
-  color: #1a577f;
+  /* color: #1a577f; */
+  color: #fff; 
   border-bottom: 5px solid #D28816;
   margin-bottom: 2.1875em;
   position: relative;
@@ -182,7 +183,7 @@ h2 {
 }
 .item_detail h1, .item_detail h2, .item_detail h3 {
   font-family: 'Montserrat', sans-serif;
-  color: #024654;
+  color: #1a577f;
 }
 .item_detail h1 {
   font-size: 2.5em;

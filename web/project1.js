@@ -23,33 +23,47 @@ $(document).ready(function () {
 // moving 1 position vertically(y): 13%
 // moving 1 spot horizontally  (x): 10%
 // If A5 is the SE corner, values can be subtracted from it's point.
-// let A be the x value, and 5v be the y value, and x the # of spots along the X-axis, y along the Y-axis:
+// let A be the x value, and v be the y value, and x the # of spots along the X-axis, y along the Y-axis:
 // A - 10x =  left value
-// 5v - 13y =  bottom value
-// bottom: (71 - 13y); left: (52 - 10x)%;  
+// v - 13y =  bottom value
+// bottom: (71 - 13y); left: (52 - 10x);  
 // Will need to setup a way to convert positions, e.g., D3, into values. 
 // Take first char: charAt(0).charCodeAt(); for ascii value. A->65, E->69, 
 // subtract 65: charAt(0).charCodeAt() - 65
 // mult by 13: (charAt(0).charCodeAt() - 65) * 13
-// sub from 71: 71 - ((charAt(0).charCodeAt() - 65) * 13) BOTTOM EQUATION
+// subt from 71: 71 - ((charAt(0).charCodeAt() - 65) * 13) BOTTOM EQUATION
 // LEFT EQUATION: 52 - (5 - (parseInt(charAt(1))) * 10);
 // PROVE: E1: bottom: (71- 4*13)= 19%; left: (52-40)= 12% : which matches pretty closely
 $(document).ready(function () {
-   var lid = $('#lid.form-control').children("option:selected").text();
-   var bottom = 71 - ((lid.charAt(0).charCodeAt() - 65) * 13);
-   var left = 52 - ((5 - (parseInt(lid.charAt(1)))) * 10);
-   $('#overlay').css('bottom', bottom + "%").css('left', left + "%");
+   // make sure we're on the right page.
+   if ($('#lid').length) {
+      var lid = $('#lid.form-control').children("option:selected").text();
+      var bottom = 71 - ((lid.charAt(0).charCodeAt() - 65) * 13);
+      var left = 52 - ((5 - (parseInt(lid.charAt(1)))) * 10);
+      $('#overlay').css('bottom', bottom + "%").css('left', left + "%");
+   }
 });
 
 // Same as above, but now for when a new location is selected 
 // can multiple jquery selectors be  applied to the same function?
 // like with css using a "," separator. Look into it.
 $(document).on('change', '#lid', function () {
-   $('#lid_changed').val('true');
-   var lid = $('#lid.form-control').children("option:selected").text();
-   var bottom = 71 - ((lid.charAt(0).charCodeAt() - 65) * 13);
-   var left = 52 - ((5 - (parseInt(lid.charAt(1)))) * 10);
-   $('#overlay').css('bottom', bottom + "%").css('left', left + "%");
+      $('#lid_changed').val('true');
+      var lid = $('#lid.form-control').children("option:selected").text();
+      var bottom = 71 - ((lid.charAt(0).charCodeAt() - 65) * 13);
+      var left = 52 - ((5 - (parseInt(lid.charAt(1)))) * 10);
+      $('#overlay').css('bottom', bottom + "%").css('left', left + "%");
+});
+
+// ARG! Now I need another form of the function above that pulls from a hidden value rather than a select option.
+// ID will reflect the change to #lname
+$(document).ready(function () {
+   if ($('#lname').length) {
+      var lid = $('#lname').val();
+      var bottom = 71 - ((lid.charAt(0).charCodeAt() - 65) * 13);
+      var left = 52 - ((5 - (parseInt(lid.charAt(1)))) * 10);
+      $('#overlay').css('bottom', bottom + "%").css('left', left + "%");
+   }
 });
 
 
