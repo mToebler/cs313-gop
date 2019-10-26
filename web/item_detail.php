@@ -1,8 +1,81 @@
 <?php
 session_start();
 
+function _e($string) {
+   return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+   //return htmlentities($string, ENT_QUOTES, 'UTF-8');
+   //return filter_var($string, FILTER_SANITIZE_STRING);
+ }
+ 
 date_default_timezone_set('America/Los_Angeles');
 $date = date('m/d/Y h:i:s a', time());
+include("db_connect.php");
+
+if (isset($_POST['new'])) {
+   // new item. Prepare insert
+   $name = _e($_POST['iname']);
+   $desc = _e($_POST['idesc']);
+   $lid = _e($_POST['lid']);
+   $cid = _e($_POST['cid']);
+   
+   try {
+      $istatement = 'insert into items (name, location_id, description) values (:name, :lid, :desc)';
+      $statement = $db->prepare($istatement);
+      $statement->bindValue(':name', $name);
+      $statement->bindValue(':lid', $lid);
+      $statement->bindValue(':desc', $desc);
+
+      $dbresult = $statement->execute(); 
+      if (!$dbresult) {
+         print "Insert failed!! $lid, $name, $desc <br>";
+         var_dump($_POST);
+      } else {
+         // this will set the $id triggering the display.
+         $id = $db->lastInsertId("item_id_seq");
+         // need to insert into meta_item
+         $istatement = 'insert into meta_item (item_id, meta_id) values (:id, :cid)';
+         $statement = $db->prepare($istatement);
+         $statement->bindValue(':id', $id);
+         $statement->bindValue(':cid', $cid);
+
+         $dbresult = $statement->execute(); 
+         if (!$dbresult) {
+            print "Meta_item insert failed!! $id, $cid <br>";
+            var_dump($_POST);
+         }
+      }
+   } catch (Exception $e) {
+      print ("EXCEPTION: $e");
+      die();
+   }
+
+} else if(isset($_POST['submit'])) {
+   // var_dump($_POST); // for testing
+   //put insert database stuff here
+   // first need to validate.
+   $id = _e($_POST['e_id']);
+   $name = _e($_POST['iname']);
+   $desc = _e($_POST['idesc']);
+   $lid = _e($_POST['lid']);
+   // this is modeled after Burton's solution from the team activity this week
+   try {
+      $uqstring = 'update items set name = :name, description = :desc, location_id = :lid where id = :id';
+      $statement = $db->prepare($uqstring);
+      $statement->bindValue(':name', $name);
+      $statement->bindValue(':desc', $desc);
+      $statement->bindValue(':lid', $lid);
+      $statement->bindValue(':id', $id);
+
+      $dbresult = $statement->execute(); 
+      if (!$dbresult) {
+         print "Update failed!! $id, $name, $desc <br>";
+         var_dump($_POST);
+      } 
+   } catch (Exception $e) {
+      print ("EXCEPTION: $e");
+      die();
+   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,8 +96,8 @@ $date = date('m/d/Y h:i:s a', time());
 <body>
    <?php include("gop_menu.php"); ?>
    <div class="container">
-<?php include("db_connect.php");
-$id = filter_var($_GET["id"], FILTER_SANITIZE_STRING);
+<?php 
+if (!isset($id)) $id = _e($_GET['id']);
 if (!is_null($id)) {
    $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, m.id as mid, l.name as lname, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id where i.id = $id";
    foreach ($db->query($qstring)as $row) {

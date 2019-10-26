@@ -23,10 +23,13 @@ $date = date('m/d/Y h:i:s a', time());
 <body>
    <?php include("gop_menu.php"); ?>
 <div class="container">
+   <div class="add_item">
+      <ul><li><a href="item_edit.php?new=1">Enter new item</a></li></ul>
+   </div>
    <?php
       include("db_connect.php");
       // the big items query, mutliple joins and aliases.
-      $qstring = 'select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id;';
+      $qstring = 'select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id order by item';
          
       include("item_list.php");
    ?>

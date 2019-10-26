@@ -11,6 +11,8 @@ body {
 .container {
   max-width: 75em;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 .header {
   background: #F15D22;
@@ -174,7 +176,9 @@ h2 {
   max-width: 80%;
   /* background: #4F2400; */
   /* color: #1a577f; */
-  color: #fff; 
+  /* color: #fff;  */
+  /* color: #4F2400; */
+  color: #232629;
   border-bottom: 5px solid #D28816;
   margin-bottom: 2.1875em;
   position: relative;
@@ -183,7 +187,8 @@ h2 {
 }
 .item_detail h1, .item_detail h2, .item_detail h3 {
   font-family: 'Montserrat', sans-serif;
-  color: #1a577f;
+  /* color: #1a577f; */
+  color: #fff;
 }
 .item_detail h1 {
   font-size: 2.5em;
@@ -199,6 +204,14 @@ h2 {
 }
 .item_detail .no_parent {
     color: #ffa;
+}
+.item_detail a {
+  /* color:#4877a1 */
+  color: #032649;
+}
+.item_detail a:hover {
+  /* color:#4877a1 */
+  color: #1a577f;
 }
 
 .img_overlay {
