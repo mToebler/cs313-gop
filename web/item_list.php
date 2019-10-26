@@ -5,13 +5,13 @@
 // I'm wondering if these vars need to be defined or not locally?
 ?>
 <div class="dataset_table">
-   <table>
+   <table id="items_table"> 
       <tr>
-         <th>Name</th>
-         <th>Description</th>
-         <th>Category</th>
-         <th>Location</th>
-         <th>Borrowed</th>
+         <th class="col-1 col-name">Name</th>
+         <th class="col-2 col-desc">Description</th>
+         <th class="col-3 col-cat">Category</th>
+         <th class="col-4 col-loc">Location</th>
+         <th class="col-5 col-bor">Borrowed</th>
       </tr>
 <?php
 foreach ($db->query($qstring)as $row) {

@@ -112,6 +112,11 @@ if (!is_null($id)) {
       echo '</h1><div class="edit_link"><a href="item_edit.php?id='. $row['id'] . '">edit</a></div>';
       echo '<br><h3>Description:</h3>';
       echo $row['idesc'];
+      ?>
+      </div>
+      <!--wanted to separate these so it doesn't affect the location mapping-->
+      <div class="item_detail">
+<?php 
       echo '<br><h3>Location:</h3>';
       echo $row['location'];
       echo '<input type="hidden" id="lname" name="lname" value="'.$row['lname'] .'">';

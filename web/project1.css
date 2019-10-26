@@ -1,6 +1,7 @@
 
 body {
-  background: #C1EAFF;
+  /* background: #C1EAFF; */
+  background: #6c757d;
   font-family: 'Montserrat', sans-serif;
   color: #222;
 }
@@ -8,12 +9,19 @@ body {
   transition: all 0.55s ease;
   box-sizing: border-box;
 }
+.container-nopad {
+  max-width: 75em;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
 .container {
   max-width: 75em;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
+
 .header {
   background: #F15D22;
   color: white;
@@ -89,16 +97,23 @@ h2 {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
-  body .container .dataset_table > table {
+  body > .container .dataset_table  {
     overflow-x:auto;
+    overflow-y:auto;
     width: 100%;
   }
-  body .container .dataset_table > table:parent {
-    overflow-x:auto;
+  
+  body >.container .dataset_table > table {
+    /* overflow-x:auto; */
+    table-layout: fixed;
     width: 100%;
+    white-space: nowrap;
   }
+  
   .dataset_table > table tr:nth-child(even) {
     background-color: #eee;
   }
@@ -115,7 +130,33 @@ h2 {
   .dataset_table td , .dataset_table th {
     position: relative;
     padding: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
   }
+  #items_table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .col-name {
+    width: 25%;
+  } 
+  .col-desc {
+    width: 35%;
+  }
+  .col-cat {
+    width: 15%;
+  }
+  .col-loc {
+    width: 20%;
+  }
+  .col-bor {
+    width: 5%
+  }
+
    /* td:hover::after, th:hover::after {
     content: "";
     position: absolute;
