@@ -4,6 +4,11 @@
       First we need to know the name of the file we've been included in to offset 
       the menu. 
    */
+if (isset($_POST['search_text'])) {
+   $search_text = _e($_POST['search_text']);
+} else {
+   $search_text = "";
+}
 
    
 ?>
@@ -25,9 +30,10 @@
          Garage Organizer (php)  
       </div>
       <div class="search-bar">
-         <form action="index.php" method="POST">
+         <form action="index.php" id="search_form" method="POST">
             
-         Search: <input type="search" name="search_text" value="<?=$search_text?>" size="10"/> 
+          <input class="form-control" type="search" id="search" name="search_text" placeholder="Search" value="<?=$search_text?>" aria-label="Search" size="10" /> 
+         
          </form>
       </div>
    </div>

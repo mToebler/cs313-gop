@@ -10,6 +10,10 @@ $(document).ready(function () {
    $('a[href="' + pathname + '"]').addClass('active');
 });
 
+$(document).on('change', '#search', function () {
+   $($('#search_form').submit());
+});
+
 // Location map notes: The idea is to use a small semi-transparant overlay with an 'X'
 // on top of the location map. When the location changes, the overlay moves to the 
 // new location. This would happen when selecting the new option from the drop down, 
