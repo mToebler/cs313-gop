@@ -5,11 +5,6 @@ include('functions.php');
 date_default_timezone_set('America/Los_Angeles');
 $date = date('m/d/Y h:i:s a', time());
 
-if (isset($_POST['search_text'])) {
-   $search_text = _e($_POST['search_text']);
-} else {
-   $search_text = "";
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
