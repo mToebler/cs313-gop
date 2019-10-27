@@ -10,7 +10,13 @@ $(document).ready(function () {
    $('a[href="' + pathname + '"]').addClass('active');
 });
 
+// search functionality
 $(document).on('change', '#search', function () {
+   $($('#search_form').submit());
+});
+
+// clicking logo
+$(document).on('click', '#gop', function () {
    $($('#search_form').submit());
 });
 

@@ -14,7 +14,7 @@ if (isset($_POST['search_text'])) {
 ?>
 <div class="header">
    <div class="container">
-      <div class="site-title">
+      <div class="site-title" id="gop">
          GOp
       </div>
       <div class="navbar"> 
