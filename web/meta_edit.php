@@ -117,16 +117,16 @@ if (isset($id)) {
          <div class="form_row item_edit">
             <input type="hidden" name="e_id" value="<?=$row['id']?>"/>
             <div class="form-group">
-               <label class="white_me" for="mname">Category name:</label>
+               <label for="mname">Category name:</label>
                <input type="text" class="form-control" id="mname" name="mname" value="<?=$row['name']?>" required>
                <div class="valid-feedback">Valid.</div>
                <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
-               <label class="white_me"  for="mdesc">Description:</label>
+               <label for="mdesc">Description:</label>
                <textarea class="form-control" id="mdesc" name="mdesc" rows="3"><?=$row['descr']?></textarea>
             </div>
-            <div class="d-flex p-2 bg-secondary text-white">
+            <div class="d-flex p-2 bg-secondary">
                <div class="form-group">
                   <label for="pid">Parent category:</label>
                   <select class="form-control" id="pid" name="pid">
@@ -159,16 +159,16 @@ if (isset($id)) {
          <div class="form_row item_edit">
             <input type="hidden" name="e_id" value="new"/>
             <div class="form-group">
-               <label class="white_me" for="mname">Category name:</label>
+               <label for="mname">Category name:</label>
                <input type="text" class="form-control" id="mname" name="mname" required>
                <div class="valid-feedback">Valid.</div>
                <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="form-group">
-               <label class="white_me"  for="mdesc">Description:</label>
+               <label for="mdesc">Description:</label>
                <textarea class="form-control" id="mdesc" name="mdesc" rows="4"></textarea>
             </div>
-            <div class="d-flex p-2 bg-secondary text-white">
+            <div class="d-flex p-2 bg-secondary">
                <div class="form-group">
                   <label for="pid">Parent category:</label>
                   <select class="form-control" id="pid" name="pid">

@@ -25,8 +25,9 @@
          Garage Organizer (php)  
       </div>
       <div class="search-bar">
-         <form action="" method="POST">
-         Search: <input type="search" name="search_text" size="10"/> 
+         <form action="index.php" method="POST">
+            
+         Search: <input type="search" name="search_text" value="<?=$search_text?>" size="10"/> 
          </form>
       </div>
    </div>

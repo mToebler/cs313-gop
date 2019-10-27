@@ -1,8 +1,15 @@
 <?php
 session_start();
+include('functions.php');
 
 date_default_timezone_set('America/Los_Angeles');
 $date = date('m/d/Y h:i:s a', time());
+
+if (isset($_POST['search_text'])) {
+   $search_text = _e($_POST['search_text']);
+} else {
+   $search_text = "";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,8 +36,11 @@ $date = date('m/d/Y h:i:s a', time());
    <?php
       include("db_connect.php");
       // the big items query, mutliple joins and aliases.
-      $qstring = 'select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id order by item';
-         
+      if(isset($search_text) && strlen($search_text)) {
+         $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id where i.name like '%$search_text%' OR i.description like '%$search_text%' order by item";
+      } else {
+         $qstring = 'select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id order by item';
+      }
       include("item_list.php");
    ?>
 </div>

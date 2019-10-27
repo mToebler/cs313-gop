@@ -144,7 +144,7 @@ if (isset($id)) {
          <label for="idesc">Description:</label>
          <textarea class="form-control" id="idesc" name="idesc" rows="4"><?=$row['idesc']?></textarea>
       </div>
-      <div class="d-flex p-2 bg-secondary text-white">
+      <div class="d-flex p-2 bg-secondary">
          <div class="form-group">
             <input type="hidden" name="lid_changed" value="false" id="lid_changed"/>
             <label for="lid">Location</label>

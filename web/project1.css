@@ -263,13 +263,15 @@ h2 {
 .item_detail .no_parent {
     color: #ffa;
 }
-.item_detail a {
+.item_detail a, .dataset_table a {
   /* color:#4877a1 */
-  color: #032649;
-}
-.item_detail a:hover {
-  /* color:#4877a1 */
+  /* color: #032649; */
   color: #1a577f;
+}
+.item_detail a:hover, .dataset_table a:hover {
+  /* color:#4877a1 */
+  /* color: #1a577f; */
+  color: #000;
 }
 
 .img_overlay {
@@ -393,8 +395,8 @@ h2 {
   position: fixed;
   width: 80%;
   bottom: 10px;
-  background: gray;
-  color: darkblue;
+  background: #6c757d;
+  color: #6c757d;
   font-size: .5em;
   display: hidden;
 }

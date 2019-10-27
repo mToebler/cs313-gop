@@ -48,11 +48,15 @@ $(document).ready(function () {
 // can multiple jquery selectors be  applied to the same function?
 // like with css using a "," separator. Look into it.
 $(document).on('change', '#lid', function () {
+   if ($('#lid_reload').length) {
+      $($('#show').submit());
+   } else {
       $('#lid_changed').val('true');
       var lid = $('#lid.form-control').children("option:selected").text();
       var bottom = 71 - ((lid.charAt(0).charCodeAt() - 65) * 13);
       var left = 52 - ((5 - (parseInt(lid.charAt(1)))) * 10);
       $('#overlay').css('bottom', bottom + "%").css('left', left + "%");
+   }
 });
 
 // ARG! Now I need another form of the function above that pulls from a hidden value rather than a select option.
