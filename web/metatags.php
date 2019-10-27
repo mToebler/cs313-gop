@@ -23,6 +23,9 @@ $date = date('m/d/Y h:i:s a', time());
 <body>
    <?php include("gop_menu.php"); ?>
    <div class="container">
+      <div class="add_item">
+         <div class="edit_link new_item"><a href="meta_edit.php?new=1">+ Enter new category</a></div><div class="new_item_buffer"></div>
+      </div>
    <div class="dataset_table">
       <table>
          <tr>

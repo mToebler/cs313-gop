@@ -1,12 +1,6 @@
 <?php
 session_start();
-
-// for XSS attacks and SQL-injection attacks. trying to find the right one.
-function _e($string) {
-   return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
-   //return htmlentities($string, ENT_QUOTES, 'UTF-8');
-   //return filter_var($string, FILTER_SANITIZE_STRING);
- }
+include('functions.php');
 
 date_default_timezone_set('America/Los_Angeles');
 $date = date('m/d/Y h:i:s a', time());
@@ -125,7 +119,7 @@ if(!isset($locations_array)) {
 </head>
 <body>
    <?php include("gop_menu.php"); ?>
-   <div class="container">
+   <div class="container pad_me">
 <?php
 // db_connect already included above
 if (!isset($id) && isset($_GET['id'])) $id = _e($_GET['id']);
@@ -148,7 +142,7 @@ if (isset($id)) {
          <div class="valid-feedback">Valid.</div>
          <div class="invalid-feedback">Please fill out this field.</div> -->
          <label for="idesc">Description:</label>
-         <textarea class="form-control" id="idesc" name="idesc" rows="3"><?=$row['idesc']?></textarea>
+         <textarea class="form-control" id="idesc" name="idesc" rows="4"><?=$row['idesc']?></textarea>
       </div>
       <div class="d-flex p-2 bg-secondary text-white">
          <div class="form-group">
@@ -231,7 +225,7 @@ if (isset($id)) {
          </div>
       </div>
       <!-- <div class> -->
-      <button type="submit" name="new" class="btn btn-primary">Submit</button>
+      <button type="submit" name="new" class="btn btn-primary">Create</button>
       <!-- </div> -->
    </div>
 </form>

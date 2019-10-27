@@ -9,14 +9,8 @@ body {
   transition: all 0.55s ease;
   box-sizing: border-box;
 }
-.container-nopad {
-  max-width: 75em;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
 .container {
-  max-width: 75em;
+  max-width: 140em;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -100,6 +94,10 @@ h2 {
     padding-left: 0px;
     padding-right: 0px;
   }
+ /* body .pad_me {
+    padding-left: 15px;
+    padding-right: 15px;
+  } */
 
   body > .container .dataset_table  {
     overflow-x:auto;
@@ -112,6 +110,14 @@ h2 {
     table-layout: fixed;
     width: 100%;
     white-space: nowrap;
+  }
+  .pad_me {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .white_me {
+    color: white;
   }
   
   .dataset_table > table tr:nth-child(even) {
@@ -208,6 +214,17 @@ h2 {
   background-color:#fff;
   /* color:#0e3447; */
   text-decoration: none;
+}
+.add_item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  flex-wrap: nowrap;
+  background-color: #F15D22;
+}
+.new_item_buffer {
+  background-color: #F15D22;
 }
 
 .item_detail {
@@ -362,7 +379,7 @@ h2 {
 @media (max-width: 770px) and (max-width: 660px) {
   .columns.thirds .item {
     max-width: 100%;
-    width: 100%;
+    width: 100%; 
   }
 }
 .columns .social {
@@ -372,13 +389,14 @@ h2 {
   z-index: -1;
   font-size: 1.75em;
 }
-div .notes {
+.notes, .notes *{
   position: fixed;
   width: 80%;
   bottom: 10px;
   background: gray;
   color: darkblue;
   font-size: .5em;
+  display: hidden;
 }
 
 .footer {

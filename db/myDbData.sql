@@ -171,3 +171,17 @@ UPDATE locations SET description= 'along western wall northern side' WHERE name 
 UPDATE locations SET description= 'along west wall middle' WHERE name = 'E3';
 UPDATE locations SET description= 'along west wall southern side' WHERE name = 'E4';
 UPDATE locations SET description= 'southwest corner' WHERE name = 'E5';
+
+-- fix possesions
+DROP TABLE item_possesion;
+DROP TABLE possesions;
+-- don't revive possesions table!
+
+CREATE TABLE item_possesion (
+   id INTEGER PRIMARY KEY DEFAULT nextval('possesion_id_seq'),
+   user_id INTEGER NOT NULL REFERENCES users(id),
+   item_id INTEGER NOT NULL REFERENCES items(id),
+   notes VARCHAR(1023),
+   start_date DATE NOT NULL DEFAULT CURRENT_DATE,
+   end_date DATE NOT NULL  DEFAULT  CURRENT_DATE + INTERVAL '7 days'
+);

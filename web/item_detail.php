@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-function _e($string) {
-   return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
-   //return htmlentities($string, ENT_QUOTES, 'UTF-8');
-   //return filter_var($string, FILTER_SANITIZE_STRING);
- }
+include('functions.php');
  
 date_default_timezone_set('America/Los_Angeles');
 $date = date('m/d/Y h:i:s a', time());
@@ -130,7 +126,7 @@ if (!is_null($id)) {
  <?php
       echo '<br><h3>Category:</h3>';
       echo '<a href="meta_detail.php?id=' . $row['mid'] . '">' . $row['cat'] . '</a>';
-      echo '<br><br><br><h2>Editing & Images coming soon!</h2>';
+      // echo '<br><br><br><h2>Editing & Images coming soon!</h2>';
    }
 
 }

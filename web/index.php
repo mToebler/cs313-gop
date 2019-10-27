@@ -24,7 +24,7 @@ $date = date('m/d/Y h:i:s a', time());
    <?php include("gop_menu.php"); ?>
 <div class="container">
    <div class="add_item">
-      <ul><li><a href="item_edit.php?new=1">Enter new item</a></li></ul>
+   <div class="edit_link new_item"><a href="item_edit.php?new=1">+ Enter new item</a></div><div class="new_item_buffer"></div>
    </div>
    <?php
       include("db_connect.php");

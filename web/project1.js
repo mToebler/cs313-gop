@@ -56,12 +56,15 @@ $(document).on('change', '#lid', function () {
 });
 
 // ARG! Now I need another form of the function above that pulls from a hidden value rather than a select option.
-// ID will reflect the change to #lname
+// ID will reflect the change to #lname. What needs to happen is get the size of the picture and go from there.
+// The view can change the size. (CSS fix?) E1:(11,17) A5:(46,72) (x:7.5%(slot), y:14%(slot))
 $(document).ready(function () {
    if ($('#lname').length) {
       var lid = $('#lname').val();
       var bottom = 71 - ((lid.charAt(0).charCodeAt() - 65) * 13);
       var left = 52 - ((5 - (parseInt(lid.charAt(1)))) * 10);
+      //var bottom = 72 - ((lid.charAt(0).charCodeAt() - 65) * 13.5);
+      //var left = 46 - ((5 - (parseInt(lid.charAt(1)))) * 8.5);
       $('#overlay').css('bottom', bottom + "%").css('left', left + "%");
    }
 });
