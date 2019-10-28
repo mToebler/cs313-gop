@@ -267,7 +267,8 @@ h2 {
 .item_detail a, .dataset_table a {
   /* color:#4877a1 */
   /* color: #032649; */
-  color: #1a577f;
+  /* color: #1a577f; */
+  color: #704E2E;
 }
 .item_detail a:hover, .dataset_table a:hover {
   /* color:#4877a1 */

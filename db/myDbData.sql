@@ -185,3 +185,25 @@ CREATE TABLE item_possesion (
    start_date DATE NOT NULL DEFAULT CURRENT_DATE,
    end_date DATE NOT NULL  DEFAULT  CURRENT_DATE + INTERVAL '7 days'
 );
+
+-- more meta items (categories)
+
+INSERT INTO metas (name, description) VALUES ('poisons', 'category'); 
+INSERT INTO metas (name, description) VALUES ('recycling', 'category'); 
+INSERT INTO metas (name, description) VALUES ('crafts', 'category'); 
+INSERT INTO metas (name, description) VALUES ('accessories', 'category'); 
+INSERT INTO metas (name, description) VALUES ('automotive', 'category'); 
+INSERT INTO metas (name, description) VALUES ('cleaning supplies', 'category'); 
+INSERT INTO metas (name, description) VALUES ('camping gear', 'category'); 
+INSERT INTO metas (name, description) VALUES ('seasonal decor', 'category'); 
+INSERT INTO metas (name, description) VALUES ('garden gear', 'category'); 
+INSERT INTO metas (name, description) VALUES ('electrical supplies', 'category'); 
+INSERT INTO metas (name, description) VALUES ('outdoor furnitue', 'category'); 
+INSERT INTO metas (name, description) VALUES ('pool supplies','category');
+INSERT INTO metas (name, description) VALUES ('oversized and clunky', 'large and in the way');
+INSERT INTO metas (name, description) VALUES ('sports and recreational equipment', 'sports, hunting, biking, outdoor equipment');
+
+--meta hierarchy query
+WITH RECURSIVE source (level, id) AS (SELECT 0,1, metAS.name FROM metas WHERE metas.id = 1 UNION ALL SELECT level+1, metas.id, metas.name FROM source JOIN metas ON (source.id = metas.parent_id)) SELECT '+' || REPEAT('-', level*2) || name::text FROM source;
+
+with recursive source (level, id) as (select 0,1, metas.name from metas where metas.id = 1 union all select level+1, metas.id, metas.name from source JOIN metas on (source.id = metas.parent_id)) select '+' || repeat('-', level*2) || name::text from source;
