@@ -50,7 +50,7 @@
                var_dump($_POST);
                $error = "Problem processing data";
             } else {
-               $id = $db->lastInsertId("item_id_seq");
+               $id = $db->lastInsertId("users_id_seq");
                // store session user to bypass check on all pages
                $_SESSION['user'] = array("id" => $id, "name" => $first_name . ' ' . $last_name, "email" => $email);
                // let's move to the item listing

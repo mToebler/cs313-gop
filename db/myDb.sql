@@ -85,3 +85,6 @@ ALTER TABLE items
 
 -- setting email in users to not null. It's how peopel will login. (synced with live and production dbs)
  ALTER TABLE users ALTER COLUMN email SET NOT NULL;
+
+ --change item_possesions to item_possessions (spelling error)
+ ALTER TABLE item_possesion RENAME TO item_possession;
