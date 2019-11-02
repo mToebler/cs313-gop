@@ -26,7 +26,7 @@ $date = date('m/d/Y h:i:s a', time());
 <?php include("db_connect.php");
 $id = filter_var($_GET["id"], FILTER_SANITIZE_STRING);
 if (!is_null($id)) {
-   $qstring = "select u.id, first_name, last_name, city, s.name as sa, address, email from users u join states s on u.state_id = s.id where u.id = $id";
+   $qstring = "select u.id, first_name, last_name, city, s.name as sa, address, email from users u left join states s on u.state_id = s.id where u.id = $id";
    foreach ($db->query($qstring)as $row) {
 
 ?>

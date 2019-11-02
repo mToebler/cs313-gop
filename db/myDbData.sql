@@ -203,7 +203,28 @@ INSERT INTO metas (name, description) VALUES ('pool supplies','category');
 INSERT INTO metas (name, description) VALUES ('oversized and clunky', 'large and in the way');
 INSERT INTO metas (name, description) VALUES ('sports and recreational equipment', 'sports, hunting, biking, outdoor equipment');
 
---meta hierarchy query
-WITH RECURSIVE source (level, id) AS (SELECT 0,1, metAS.name FROM metas WHERE metas.id = 1 UNION ALL SELECT level+1, metas.id, metas.name FROM source JOIN metas ON (source.id = metas.parent_id)) SELECT '+' || REPEAT('-', level*2) || name::text FROM source;
+--meta hierarchy query for id's with parent_ids.
+WITH RECURSIVE source (level, id) AS (
+   SELECT 0,1, metAS.name 
+      FROM metas 
+      WHERE metas.id = 1 
+   UNION ALL 
+      SELECT level+1, metas.id, metas.name 
+      FROM source 
+      JOIN metas ON (source.id = metas.parent_id)
+) SELECT '+' || REPEAT('-', level * 2) || name::TEXT FROM source;
+
+--meta query for all id's with structure. 
+
+WITH RECURSIVE source (level, id) AS (
+   SELECT 0,1, metas.name 
+      FROM metas 
+      WHERE metas.id = 1 
+   UNION ALL 
+      SELECT level+1, metas.id, metas.name 
+      FROM source 
+      LEFT JOIN metas ON (source.id = metas.parent_id)
+) SELECT '+' || REPEAT('-', level * 2) || name::TEXT FROM source;
+
 
 with recursive source (level, id) as (select 0,1, metas.name from metas where metas.id = 1 union all select level+1, metas.id, metas.name from source JOIN metas on (source.id = metas.parent_id)) select '+' || repeat('-', level*2) || name::text from source;

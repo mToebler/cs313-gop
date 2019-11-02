@@ -89,6 +89,99 @@ function clicked() {
    alert('Clicked');
 }
 
+// LOGIN FUNCTIONS
+function signup() {
+   if ($('#hidden_signup').val() == 'true') {
+      if (checkPassword()) {
+         // check email, first last
+         if (checkEmail()) {
+            if (checkFirstName() == true && checkLastName() == true) {
+               $($('#logForm').submit());
+            } else {
+               alert('please enter valid first and last name')
+            }
+         } else {
+            alert('please enter valid email address');
+         }
+      }
+      // else alert("chkpwd false");
+   } else {
+      $('#pwd2_div').css('display', 'inherit');
+      $('#hidden_signup').val('true');
+   }
+};
+
+function checkFirstName() {
+   //fun with regex!
+   // just going to do a regex check for starting capital letter then series of lower letters, with optional 2 groupings starting with a dashes, space or capital letter allowed if followed by a lower case letter (single lower letter allowed here).
+   // Jimmy James-james, Jimmy j, Jimmy Jj, James j-Jimmy 
+   return (/^[A-Z][a-z]+([\-\s]?[A-Z]?[a-z]+){0,2}$/.test(($('#first_name').val())));
+}
+
+function checkLastName() {
+   // regex check for starting capital letter then series of lower letters, 3 groupings of a dashes or capital allowed if followed by a lower case letter. No spaces.
+   return (/^[A-Z][a-z]+(\-?[A-Z][a-z]+){0,3}$/.test($('#last_name').val()));
+}
+
+function checkEmail() {
+   // pretty basic check. can't be spaces, can be multiple .'s before @ but not after - just 1.
+   return (/^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test($('#email').val()));
+}
+
+// modified version of what we worked on in group lab 7.
+function checkPassword() {
+	var item1 = document.getElementById("pwd1").value;
+	var item2 = document.getElementById("pwd2").value;
+   var isSame = true;
+   var isBig = true;
+	var numCount = 0;
+	var charCount = 0;
+	if (item1.length != item2.length) {
+      isSame = false;
+   }
+   if (item1.length < 7) {
+      isBig = false;
+   }
+   
+	for (var i = 0; i < item1.length; i++) {
+		if (item1.charAt(i) != item2.charAt(i)) {
+			isSame = false;
+      }
+      
+		if (isNaN(item1.charAt(i))) { 
+			charCount++; 
+		} else { 
+			numCount++; 
+		}
+   }
+
+   if (numCount == 0 || charCount == 0 || !isBig) {
+      isBig = false;
+   } else {
+      isBig = true;
+   }
+   
+	if (!isSame) {
+      document.getElementById('error').innerHTML = "*Passwords not identical.<br/>";
+	}	
+	else {
+		document.getElementById('error').innerHTML = "";
+   }
+   
+	if (!isBig) {
+      document.getElementById('error2').innerHTML = "*Password needs to start with a letter and be 7-20 characters long with at least one number.<br/>";
+	}
+	else {
+		document.getElementById('error2').innerHTML = "";
+   }
+   // running into a problem where the innerHTML is not updating before the check and alerts.
+   if (isBig && isSame) {
+      return true;
+   } else {
+      return false;
+   }
+}
+
 // THESE FUNCTIONS BELOW ARE FOR REFERENCE
 // JQuery is newish to me. The selector syntax
 // can be a little confusing. I haven't made that

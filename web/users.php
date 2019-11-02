@@ -33,7 +33,7 @@ $date = date('m/d/Y h:i:s a', time());
 
 <?php include("db_connect.php");
 // this query is in the works. I'm working on pulling out hierarchical info results.
-   $qstring = "select u.id, first_name, last_name, city, s.name as sa, address, email from users u join states s on u.state_id = s.id order by first_name";
+   $qstring = "select u.id, first_name, last_name, city, s.name as sa, address, email from users u left join states s on u.state_id = s.id order by first_name";
    foreach ($db->query($qstring)as $row) {
       echo '<tr>';
       echo '<td><a href="user_detail.php?id='. $row['id'] .'">'. $row['first_name'] .' ' . $row['last_name'] .'</a></td>';

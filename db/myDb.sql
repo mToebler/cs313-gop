@@ -82,3 +82,6 @@ ALTER TABLE items
 
 ALTER TABLE items
 	ADD COLUMN description VARCHAR(2047);
+
+-- setting email in users to not null. It's how peopel will login. (synced with live and production dbs)
+ ALTER TABLE users ALTER COLUMN email SET NOT NULL;
