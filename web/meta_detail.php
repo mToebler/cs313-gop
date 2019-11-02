@@ -89,6 +89,7 @@ if (isset($_POST['new'])) {
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    <script src="project1.js" async defer></script>
+   <?php include("favicon.html");?>
 </head>
 <body>
    <?php include("gop_menu.php"); ?>
