@@ -126,8 +126,10 @@ if (isset($id)) {
       // items-listing in a separate php file, then it could just be plugged in.
       echo '<br><h2>Items in category</h2>';  
       // $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id where m.id  = $id order by item";
-      $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id where m.id =$id or m.id in ( select id from metas where parent_id = $id) order by item";
+      $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location, ip.start_date as start_date, ip.returned_date as returned_date from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id left join item_possession ip on i.id = ip.id where m.id = $id or m.id in ( select id from metas where parent_id = $id) order by item";
+      echo '<div class="max-width">';
       include("item_list.php");
+      echo '</div>';
 } else {
    echo 'Woops - unknown category. Please return to the <a href="index.php">main page</a>.';
 }

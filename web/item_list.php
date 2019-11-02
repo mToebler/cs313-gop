@@ -15,13 +15,19 @@
       </tr>
 <?php
 foreach ($db->query($qstring)as $row) {
+   // figure out if onloan
+   $onloan = false;
+   if($row['start_date']=='') $onloan = false;
+   else if ($row['returned_date'] == '') $onloan = true;
+
    echo '<tr>';
    echo '<td><a href="item_detail.php?id='. $row['id'] .'">';
    echo $row['item'] . '<a></td>';
    echo '<td>' .$row['idesc'] . '</td>';
    echo '<td>' .$row['cat'] . '</td>';
    echo '<td>' .$row['location'] . '</td>';
-   echo '<td>' . 'No' . '</td>';
+   if($onloan) echo '<td class="onloan">' . 'Yes' . '</td>';
+   else echo '<td>' . 'No' . '</td>';
    echo '</tr>';
 }
 ?>

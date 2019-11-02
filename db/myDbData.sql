@@ -203,6 +203,10 @@ INSERT INTO metas (name, description) VALUES ('pool supplies','category');
 INSERT INTO metas (name, description) VALUES ('oversized and clunky', 'large and in the way');
 INSERT INTO metas (name, description) VALUES ('sports and recreational equipment', 'sports, hunting, biking, outdoor equipment');
 
+-- item_possession table
+INSERT INTO item_possession (user_id, item_id, notes) VALUES (1, 12, 'for inflating water-weenie for the lake this weekend');
+INSERT INTO item_possession (user_id, item_id, notes) VALUES (8, 10, 'needed for cleaning goat pen');
+
 --meta hierarchy query for id's with parent_ids.
 WITH RECURSIVE source (level, id) AS (
    SELECT 0,1, metAS.name 
@@ -228,3 +232,9 @@ WITH RECURSIVE source (level, id) AS (
 
 
 with recursive source (level, id) as (select 0,1, metas.name from metas where metas.id = 1 union all select level+1, metas.id, metas.name from source JOIN metas on (source.id = metas.parent_id)) select '+' || repeat('-', level*2) || name::text from source;
+
+-- item_possession query
+select u.id, u.first_name, i.id as iid, i.name as iname, ip.start_date, ip.end_date, ip.id as ipid 
+   from users u JOIN item_possession ip 
+      ON u.id = ip.user_id 
+      JOIN items i on i.id = ip.item_id;

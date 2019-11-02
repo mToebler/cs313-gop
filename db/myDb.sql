@@ -88,3 +88,6 @@ ALTER TABLE items
 
  --change item_possesions to item_possessions (spelling error)
  ALTER TABLE item_possesion RENAME TO item_possession;
+
+ -- add a returned date to item_possession to indicate if it's been returned.
+ ALTER TABLE item_possession ADD COLUMN returned_date DATE ;

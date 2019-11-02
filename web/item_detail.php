@@ -48,11 +48,12 @@ if (isset($_POST['new'])) {
 } else if(isset($_POST['submit'])) {
    // var_dump($_POST); // for testing
    //put insert database stuff here
-   // first need to validate.
+   // first need to scrub input.
    $id = _e($_POST['e_id']);
    $name = _e($_POST['iname']);
    $desc = _e($_POST['idesc']);
    $lid = _e($_POST['lid']);
+   $mid = _e($_POST['cid']);
    // this is modeled after Burton's solution from the team activity this week
    try {
       $uqstring = 'update items set name = :name, description = :desc, location_id = :lid where id = :id';
@@ -66,7 +67,18 @@ if (isset($_POST['new'])) {
       if (!$dbresult) {
          print "Update failed!! $id, $name, $desc <br>";
          var_dump($_POST);
-      } 
+      } else {
+         // need to update meta
+         $uqstring = 'update meta_item set meta_id = :mid where item_id = :id';
+         $statement = $db->prepare($uqstring);
+         $statement->bindValue(':mid', $mid);
+         $statement->bindValue(':id', $id);
+
+         $dbresult = $statement->execute();
+         if (!$dbresult) {
+            error_log('!item_detail.php: meta_item Update Failed:' . $mid . ' ' . $id);
+         }
+      }
    } catch (Exception $e) {
       print ("EXCEPTION: $e");
       die();
@@ -96,7 +108,7 @@ if (isset($_POST['new'])) {
 <?php 
 if (!isset($id)) $id = _e($_GET['id']);
 if (!is_null($id)) {
-   $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, m.id as mid, l.name as lname, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id where i.id = $id";
+   $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, m.id as mid, l.name as lname, l.description as location, ip.returned_date as returned_date, ip.start_date as start_date from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id left join item_possession ip on i.id = ip.item_id where i.id = $id";
    foreach ($db->query($qstring)as $row) {
 
 ?>
@@ -104,9 +116,15 @@ if (!is_null($id)) {
          
       
 <?php
+      //figure out if it's on loan or not.
+      $onloan = false;
+      if($row['start_date']=='') $onloan = false;
+      else if ($row['returned_date'] == '') $onloan = true;
+
       echo '<h1>';
       echo $row['item'];
       echo '</h1><div class="edit_link"><a href="item_edit.php?id='. $row['id'] . '">edit</a></div>';
+      if($onloan) echo '<div class="onloan">on loan</div>';
       echo '<br><h3>Description:</h3>';
       echo $row['idesc'];
       ?>

@@ -112,6 +112,7 @@ h2 {
     overflow-x:auto;
     overflow-y:auto;
     width: 100%;
+    border-bottom: 5px solid #D28816;
   }
   
   body >.container .dataset_table > table {
@@ -202,6 +203,25 @@ h2 {
     width: 5%
   }
 
+  .colb-name {
+    width: 20%;
+  }
+  .colb-item {
+    width: 20%;
+  }
+  .colb-start {
+    width: 12%;
+  }
+  .colb-end {
+    width: 12%;
+  }
+  .colb-returned {
+    width: 10%;
+  }
+  .colb-notes {
+    width: 26%;
+  }
+
   .hidden {
     display: none;
   }
@@ -273,7 +293,8 @@ h2 {
   background-color: #6c757d;
   /* border-bottom:5px solid #D28816; */
   padding: 1.5625em;
-  max-width: 80%;
+  max-width: 95%;
+  /* max-width: 80%; */
   /* background: #4F2400; */
   /* color: #1a577f; */
   /* color: #fff;  */
@@ -317,6 +338,31 @@ h2 {
   color: #000;
 }
 
+.lending_detail {
+  background-color: #6c757d;
+  /* border-bottom:5px solid #D28816; */
+  padding: 1.5625em;
+  max-width: 80%;
+  /* background: #4F2400; */
+  /* color: #1a577f; */
+  /* color: #fff;  */
+  /* color: #4F2400; */
+  color: #232629;
+  border-bottom: 5px solid #D28816;
+  margin-bottom: 2.1875em;
+  position: relative;
+  overflow: hidden;
+}
+.returned {
+  color: #6c757d;
+}
+.onloan {
+  color: #D28816;
+}
+.max-width {
+  max-width: 100%;
+  padding: 0em;
+}
 .img_overlay {
   position: relative;
 }

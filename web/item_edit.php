@@ -143,7 +143,25 @@ if (isset($id)) {
          <div class="valid-feedback">Valid.</div>
          <div class="invalid-feedback">Please fill out this field.</div> -->
          <label for="idesc">Description:</label>
-         <textarea class="form-control" id="idesc" name="idesc" rows="4"><?=$row['idesc']?></textarea>
+         <textarea class="form-control" id="idesc" name="idesc" rows="3"><?=$row['idesc']?></textarea>
+      </div>
+      <div class="d-flex p-2 bg-secondary">
+         <div class="form-group">
+            <label for="cid">Category</label>
+            <select class="form-control" id="cid" name="cid" required>
+               <?php
+               foreach ($categories_array as $ca_id=>$ca_name) {
+                  if ($row['mid'] == $ca_id) {
+                     echo '<option value="' . $ca_id . '" selected>'.$ca_name.'</option>';     
+                  } else {
+                     echo '<option value="' . $ca_id . '">'.$ca_name.'</option>';     
+                  }
+               }
+               ?>
+            </select>
+         </div>
+         <div> 
+         </div>
       </div>
       <div class="d-flex p-2 bg-secondary">
          <div class="form-group">
