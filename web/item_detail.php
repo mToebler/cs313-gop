@@ -123,8 +123,12 @@ if (!is_null($id)) {
 
       echo '<h1>';
       echo $row['item'];
-      echo '</h1><div class="edit_link"><a href="item_edit.php?id='. $row['id'] . '">edit</a></div>';
+      echo '</h1><div class="item_lend_edit_container"><div class="edit_link"><a href="item_edit.php?id='. $row['id'] . '">edit</a></div>';
+      echo '<div class="visibility-hide small">x</div>';
+      // Lending functionality.
       if($onloan) echo '<div class="onloan">on loan</div>';
+      else echo '<div class="edit_link"><a href="item_loan.php?id='. $row['id'] . '">lend</a></div>';
+      echo '</div>';
       echo '<br><h3>Description:</h3>';
       echo $row['idesc'];
       ?>

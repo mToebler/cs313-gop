@@ -11,7 +11,7 @@
          <th class="col-2 col-desc">Description</th>
          <th class="col-3 col-cat">Category</th>
          <th class="col-4 col-loc">Location</th>
-         <th class="col-5 col-bor">Borrowed</th>
+         <th class="col-5 col-bor"><span title="Borrowed">Borrowed</span></th>
       </tr>
 <?php
 foreach ($db->query($qstring)as $row) {
@@ -23,9 +23,9 @@ foreach ($db->query($qstring)as $row) {
    echo '<tr>';
    echo '<td><a href="item_detail.php?id='. $row['id'] .'">';
    echo $row['item'] . '<a></td>';
-   echo '<td>' .$row['idesc'] . '</td>';
-   echo '<td>' .$row['cat'] . '</td>';
-   echo '<td>' .$row['location'] . '</td>';
+   echo '<td><span title="' .$row['idesc'] . '">' .$row['idesc'] . '</td>';
+   echo '<td><span title="' .$row['cat'] .'">' .$row['cat'] . '</td>';
+   echo '<td><span title="' .$row['location'] .'">'.$row['location'] .'</td>';
    if($onloan) echo '<td class="onloan">' . 'Yes' . '</td>';
    else echo '<td>' . 'No' . '</td>';
    echo '</tr>';

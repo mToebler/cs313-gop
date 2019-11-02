@@ -9,3 +9,4 @@ web/images/gop_locations.png
 web/images/gop_locations_sm72.png
 web/images/gop_locations_smc.png
 web/project.code-workspace
+web/*.code-workspace
