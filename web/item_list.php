@@ -14,21 +14,27 @@
          <th class="col-5 col-bor"><span title="Borrowed">Borrowed</span></th>
       </tr>
 <?php
+$last_id = 0;
 foreach ($db->query($qstring)as $row) {
-   // figure out if onloan
-   $onloan = false;
-   if($row['start_date']=='') $onloan = false;
-   else if ($row['returned_date'] == '') $onloan = true;
+   // deal with mulit-loaned items showing up multi-times
+   // don't have time to build a view and change all queries. =<()
+   if($row['id'] != $last_id) {
+      // figure out if onloan
+      $onloan = false;
+      if($row['start_date']=='') $onloan = false;
+      else if ($row['returned_date'] == '') $onloan = true;
 
-   echo '<tr>';
-   echo '<td><a href="item_detail.php?id='. $row['id'] .'">';
-   echo $row['item'] . '<a></td>';
-   echo '<td><span title="' .$row['idesc'] . '">' .$row['idesc'] . '</td>';
-   echo '<td><span title="' .$row['cat'] .'">' .$row['cat'] . '</td>';
-   echo '<td><span title="' .$row['location'] .'">'.$row['location'] .'</td>';
-   if($onloan) echo '<td class="onloan">' . 'Yes' . '</td>';
-   else echo '<td>' . 'No' . '</td>';
-   echo '</tr>';
+      echo '<tr>';
+      echo '<td><a href="item_detail.php?id='. $row['id'] .'">';
+      echo $row['item'] . '<a></td>';
+      echo '<td><span title="' .$row['idesc'] . '">' .$row['idesc'] . '</td>';
+      echo '<td><span title="' .$row['cat'] .'">' .$row['cat'] . '</td>';
+      echo '<td><span title="' .$row['location'] .'">'.$row['location'] .'</td>';
+      if($onloan) echo '<td class="onloan">' . 'Yes' . '</td>';
+      else echo '<td>' . 'No' . '</td>';
+      echo '</tr>';
+   }
+   $last_id = $row['id'];
 }
 ?>
  </table>

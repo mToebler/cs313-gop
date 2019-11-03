@@ -98,7 +98,7 @@ if(!isset($desc)) {
                echo '<br><h3>Items in this location</h2>';  
                // $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, l.description as location from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id where m.id  = $id order by item";
                // $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, m.id as mid, l.name as lname, l.description as location, l.id as lid from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id where l.id = $lid order by item";
-               $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, m.id as mid, l.name as lname, l.description as location, l.id as lid, ip.start_date as start_date, ip.returned_date as returned_date from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id left join item_possession ip on i.id = ip.item_id where l.id = $lid order by item";
+               $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, m.id as mid, l.name as lname, l.description as location, l.id as lid, ip.start_date as start_date, ip.returned_date as returned_date from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id left join item_possession ip on i.id = ip.item_id where l.id = $lid order by item, returned_date desc";
                include("item_list.php");
             }
          ?>

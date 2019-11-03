@@ -45,6 +45,35 @@ if(isset($_POST['lend'])) {
    header('location: lending.php' );
    die();
 }
+// check for hilight _GET
+if(isset($_GET['hilight'])) {
+   $hi_id = _e($_GET['hilight']);
+} else {
+   $hi_id = 0;
+}
+// check for return _GET
+if(isset($_GET['return'])) {
+   $return_id = _e($_GET['return']);
+   // this is modeled after Burton's solution from the team activity this week
+   try {
+      $uqstring = 'update item_possession set returned_date = current_date where id = :id';
+      $statement = $db->prepare($uqstring);
+      $statement->bindValue(':id', $return_id);
+      
+      $dbresult = $statement->execute(); 
+      if (!$dbresult) {
+         print "Update failed!! $return_id<br>";
+         var_dump($_GET);
+      }
+   } catch (Exception $e) {
+      error_log("EXCEPTION: $e, var_dump($_GET)");
+      die();
+   }
+   //since we made it, i'm going to reload the page, get rid of the query parameter.
+   header('location: lending.php');
+   die();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,14 +108,24 @@ if(isset($_POST['lend'])) {
                </tr>
 <?php
       // include("db_connect.php");
-      $query = "select u.id, u.first_name, u.last_name, i.id as iid, i.name as iname, ip.start_date, ip.end_date, ip.returned_date, ip.id as ipid, ip.notes as notes from users u JOIN item_possession ip ON u.id = ip.user_id JOIN items i on i.id = ip.item_id order by end_date";
+      $query = "select u.id, u.first_name, u.last_name, i.id as iid, i.name as iname, ip.start_date, ip.end_date, ip.returned_date, ip.id as ip_id, ip.notes as notes from users u JOIN item_possession ip ON u.id = ip.user_id JOIN items i on i.id = ip.item_id order by i.name";
       try {
          foreach ($db->query($query)as $row) {
             echo '<tr>';
-            echo '<td><a href="user_detail.php?id='. $row['id'] .'">'. $row['first_name'] .' ' . $row['last_name'] .'</a></td>';
+            echo '<td><a href="user_detail.php?id='. $row['id'] .'">';
+            if($hi_id == $row['ip_id']) echo '<span style="color:red">';
+            echo $row['first_name'] .' ' . $row['last_name'];
+            if($hi_id == $row['ip_id']) echo '</span>';
+            echo '</a></td>';
             echo '<td><a href="item_detail.php?id='. $row['iid'] .'">' . $row['iname'] . '<a></td>';
-            echo '<td>' .$row['start_date'] . '</td><td>'. $row['end_date'] . '</td><td class="returned">'. $row['returned_date'] . '</td>';
+            echo '<td>' .$row['start_date'] . '</td><td>'. $row['end_date'] . '</td>';
+            
+            if($row['returned_date'] == '')  echo '<td class="edit_link"><a href="lending.php?return=' . $row['ip_id']. '"><span title="click to return this item to the garage">return</span></a>'; 
+            else echo '<td class="returned">' . $row['returned_date'];
+
+            echo '</td>';
             echo '<td><span title="' .$row['notes'] .'">' .$row['notes'] . '</span></td>';
+            
             echo '</tr>';
          }
       } catch (Exception $e) {

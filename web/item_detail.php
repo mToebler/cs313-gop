@@ -108,7 +108,9 @@ if (isset($_POST['new'])) {
 <?php 
 if (!isset($id)) $id = _e($_GET['id']);
 if (!is_null($id)) {
-   $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, m.id as mid, l.name as lname, l.description as location, ip.returned_date as returned_date, ip.start_date as start_date from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id left join item_possession ip on i.id = ip.item_id where i.id = $id";
+   //$qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, m.id as mid, l.name as lname, l.description as location, ip.returned_date as returned_date, ip.start_date as start_date, ip.id as ip_id from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id left join item_possession ip on i.id = ip.item_id where i.id = $id";
+   // This query adds "on loan: <name>" functionality
+   $qstring = "select i.id as id, i.name as item, i.description as idesc, m.name as cat, m.id as mid, l.name as lname, l.description as location, ip.returned_date as returned_date, ip.start_date as start_date, ip.id as ip_id, u.first_name || ' ' || u.last_name as lent_to from items i join meta_item mi on i.id = mi.item_id join metas m on mi.meta_id = m.id join locations l on i.location_id = l.id left join item_possession ip on i.id = ip.item_id left join users u on ip.user_id = u.id where i.id =$id  order by returned_date desc fetch first 1 rows only";
    foreach ($db->query($qstring)as $row) {
 
 ?>
@@ -126,7 +128,7 @@ if (!is_null($id)) {
       echo '</h1><div class="item_lend_edit_container"><div class="edit_link"><a href="item_edit.php?id='. $row['id'] . '">edit</a></div>';
       echo '<div class="visibility-hide small">x</div>';
       // Lending functionality.
-      if($onloan) echo '<div class="onloan">on loan</div>';
+      if($onloan) echo '<div class="onloan"><span title="click to go to Borrowed">on loan:<a href="lending.php?hilight='.$row['ip_id'].'"> '. $row['lent_to'] . '</a></span></div>';
       else echo '<div class="edit_link"><a href="item_loan.php?id='. $row['id'] . '">lend</a></div>';
       echo '</div>';
       echo '<br><h3>Description:</h3>';
