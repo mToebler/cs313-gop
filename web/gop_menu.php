@@ -27,7 +27,8 @@ if (isset($_POST['search_text'])) {
          </ul> 
       </div>
       <div class="site-tagline">
-         Garage Organizer (php) <br> <?=$_SESSION['user']['name']?> 
+         Garage Organizer (php) <br><?=$_SESSION['user']['name']?>  
+         <div class="reverse_edit_link"><a href="logout.php">logout</a></div>
       </div>
       <div class="search-bar">
          <form action="index.php" id="search_form" method="POST">
